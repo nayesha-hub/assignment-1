@@ -5,7 +5,7 @@
 set -euo pipefail
 
 # 3. set error handling function
-on-error(){
+on_error() {
 	echo "$(date) - Command failed: $BASH_COMMAND" >> logs/system-info.log
        	echo "$(date) - System Information Collection Unsuccessful" >> logs/system-info.log
 	echo "An error occurred while collecting system information. check log files for details."
@@ -13,7 +13,7 @@ on-error(){
 }
 
 # 4. call and trap error function
-trap 'on-error' ERR
+trap 'on_error' ERR
 
 # 5. log the execution time
 echo "$(date) - Collecting System Information" >> logs/system-info.log
