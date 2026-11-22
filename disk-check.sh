@@ -1,4 +1,3 @@
-# 1. shebang
 #!/usr/bin/env bash
 
 # 2. name the variables

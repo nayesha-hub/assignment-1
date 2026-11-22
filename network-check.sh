@@ -1,4 +1,3 @@
-# 1. shebang
 #!/usr/bin/env bash
 
 # 2. define variables
@@ -28,8 +27,7 @@ else
 fi
 
 # 6. check connectivity and port
-ping -c 2 -W 3 "$resolved_ip" > /dev/null 2>&1
-if [ "ping -c 2 $resolved_ip" ]; then
+if ping -c 2 -W 3 "$resolved_ip" > /dev/null 2>&1; then
 	echo "$(date) - Ping to $host_name successful" >> logs/network-check.log
 	echo "Ping to $host_name successful"
 else
@@ -54,15 +52,15 @@ if [ -n "$port" ]; then
 		echo "Port must be between 1-65535"
 		echo "$(date) - Error: Invalid port range" >> logs/network-check.log
 		exit 2
-	fi
-fi	
-if nc -z -w 5 "$host_name" "$port"; then
+	fi	
+	if nc -z -w 5 "$host_name" "$port"; then
 	echo "$(date) - TCP connection successful" >> logs/network-check.log
 	echo " TCP connection successful"
 else
 	echo "$(date) - Error: TCP connection not successful" >> logs/network-check.log
 	echo "TCP connection error"
 	exit 1
+	fi
 fi
 
 echo "Network check successful"

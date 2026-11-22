@@ -1,4 +1,3 @@
-# 1. shebang
 #!/usr/bin/env bash
 
 # 2. set error handling
@@ -27,7 +26,7 @@ echo "Time: $(date +%H:%M:%S)"
 echo "Operating System: $(uname)"
 echo "Kernel Version: $(uname -r)"
 echo "Uptime: $(uptime -p)"
-echo "CPU Info: $(grep 'model name' /proc/cpuinfo | head -n 1)"
+echo "CPU Info: $(grep -m1 'model name' /proc/cpuinfo)"
 echo "CPU Cores: $(nproc)"
 echo "Memory Info:"
 grep -E "MemTotal|MemFree|MemAvailable" /proc/meminfo
